@@ -672,6 +672,7 @@ GameObject:
   - component: {fileID: 1022595391}
   - component: {fileID: 1022595390}
   - component: {fileID: 1022595389}
+  - component: {fileID: 1022595392}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -721,8 +722,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b03ba975e73f901439fb6969687ce83b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxSize: 1.5
-  _minSize: 0.2
+  _playerMaxSize: {x: 1.5, y: 1.5, z: 1.5}
+  _playerMinSize: {x: 0.2, y: 0.2, z: 0.2}
 --- !u!135 &1022595391
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -736,6 +737,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1022595392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022595387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b89dc41e230133f46a72f5b160b7e5f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerReducingCoefficient: 0.03
 --- !u!1 &1163631663
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,10 +879,10 @@ Canvas:
   m_GameObject: {fileID: 1443280817}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 963194227}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0

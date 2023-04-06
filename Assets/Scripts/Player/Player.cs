@@ -5,21 +5,13 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Player Settings")]
-    [SerializeField] private float _maxSize = 0f;
-    [SerializeField] private float _minSize = 0f;
+    [SerializeField] private Vector3 _playerMaxSize = Vector3.zero;
+    [SerializeField] private Vector3 _playerMinSize = Vector3.zero;
 
-    private void OnEnable()
-    {
-        InputSystem.OnTouchDetection += Print;
-    }
+    public Vector3 PlayerMinSize => _playerMinSize;
 
-    private void OnDisable()
+    private void Awake()
     {
-        InputSystem.OnTouchDetection -= Print;
-    }
-
-    public void Print(bool IsPressed)
-    {
-        Debug.Log(IsPressed + "!");
+        transform.localScale = _playerMaxSize;
     }
 }
