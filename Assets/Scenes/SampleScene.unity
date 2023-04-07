@@ -182,7 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 375049034}
   m_Layer: 0
-  m_Name: Bullet Start Position
+  m_Name: Bullet Spawn Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -196,7 +196,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 375049033}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1022595388}
@@ -708,8 +708,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1dd23f510648654bb7173308ebb77c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bullet: {fileID: 9072206189003785276, guid: 4cc8b331b6caa074aab7809ea12959ab, type: 3}
-  _bulletStartPosition: {fileID: 375049034}
+  _bulletPrefab: {fileID: 9072206189003785276, guid: 4cc8b331b6caa074aab7809ea12959ab, type: 3}
+  _bulletSpawnPosition: {fileID: 375049034}
+  _amountToPool: 1
 --- !u!114 &1022595390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -749,7 +750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b89dc41e230133f46a72f5b160b7e5f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerReducingCoefficient: 0.03
+  _playerReducingCoefficient: 0.1
 --- !u!1 &1163631663
 GameObject:
   m_ObjectHideFlags: 0

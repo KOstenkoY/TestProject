@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float _playerReducingCoefficient = 0f;
+    [SerializeField] private float _playerReducingCoefficient = 0.1f;
 
     private Player _player;
 
-    private Coroutine _coroutine;
+    private Coroutine _playerReduceCoroutine;
 
     private void Awake()
     {
@@ -28,9 +28,13 @@ public class PlayerController : MonoBehaviour
     private void ReducePlayer(bool isReduce)
     {
         if (isReduce)
-            _coroutine = StartCoroutine(ReducePlayer());
+        {
+            _playerReduceCoroutine = StartCoroutine(ReducePlayer());
+        }
         else
-            StopCoroutine(_coroutine);
+        {
+            StopCoroutine(_playerReduceCoroutine);
+        }
     }
 
     private IEnumerator ReducePlayer()
@@ -41,6 +45,7 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForEndOfFrame();
             transform.localScale -= Vector3.one * (_playerReducingCoefficient * Time.deltaTime);
         }
+
         KillPlayer();
     }
 
