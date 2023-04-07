@@ -59,14 +59,16 @@ public class Bullet : MonoBehaviour
             transform.localScale += Vector3.one * (_bulletIncreaseCoefficient * Time.deltaTime);
         }
 
-        //gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (TryGetComponent(_enemyTag))
-    //    {
-    //        other.GetComponent
-    //    }
-    //}
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent<Enemy>(out Enemy enemyComponent))
+        {
+            enemyComponent.KillEnemy();
+        }
+
+        gameObject.SetActive(false);
+    }
 }
