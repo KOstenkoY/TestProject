@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,10 +14,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private int _countEnemies = 7;
 
     private int _amountToPool = 30;
-
-    // how many times we try to spawn enemy
-    //private int _maxSpawnAttemptsPerObstacle = 10;
-    //private float _obstacleCheckRadius = 2f;
 
     private List<GameObject> _enemiesList = new List<GameObject>();
 
@@ -41,7 +36,6 @@ public class EnemySpawner : MonoBehaviour
             tmp.transform.SetParent(_enemyContainer);
 
             _enemiesList.Add(tmp);
-
         }
     }
 
@@ -80,48 +74,20 @@ public class EnemySpawner : MonoBehaviour
 
             enemy.SetActive(true);
         }
+    }
 
+    public void Restart()
+    {
+        ClearEnemies();
 
-        //for (int i = 0; i < _countEnemies; i++)
-        //{
-        //    Vector3 position = Vector3.zero;
+        RandomSpawnEnemies();
+    }
 
-        //    // whether or not we can spawn in this position
-        //    bool isValidPosition = false;
-
-        //    // how many times we'he attempted to spawn this enemy
-        //    int spawnAttempts = 0;
-
-        //    while (!isValidPosition && spawnAttempts < _maxSpawnAttemptsPerObstacle)
-        //    {
-        //        spawnAttempts++;
-
-        //        position = new Vector3(
-        //            Random.Range(-_spawnWidth / 2, _spawnWidth / 2),
-        //            2,
-        //            Random.Range(-_spawnLength / 2, _spawnLength / 2));
-
-        //        isValidPosition = true;
-
-        //        Collider[] colliders = Physics.OverlapSphere(position, _obstacleCheckRadius);
-
-        //        foreach (Collider collider in colliders)
-        //        {
-        //            if (collider.GetComponent<Enemy>())
-        //            {
-        //                isValidPosition = false;
-        //            }
-        //        }
-        //    }
-
-        //    if (isValidPosition)
-        //    {
-        //        GameObject enemy = GetEnemies();
-
-        //        enemy.transform.position = position;
-
-        //        enemy.SetActive(true);
-        //    }
-        //}
+    private void ClearEnemies()
+    {
+        foreach(GameObject enemy in _enemyContainer)
+        {
+            enemy.SetActive(false);
+        }
     }
 }

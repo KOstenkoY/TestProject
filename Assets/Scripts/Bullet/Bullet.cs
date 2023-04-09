@@ -22,6 +22,8 @@ public class Bullet : MonoBehaviour
 
     private Color _color = Color.white;
 
+    public static event System.Action OnBulletHit;
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -71,13 +73,7 @@ public class Bullet : MonoBehaviour
         }
 
         gameObject.SetActive(false);
-    }
 
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.blue;
-    //    Gizmos.DrawSphere(transform.position, 0.5f);
-    //    Gizmos.color = Color.green;
-    //    Gizmos.DrawLine(transform.position, transform.position + transform.forward * 1.5f);
-    //}
+        OnBulletHit?.Invoke();
+    }
 }

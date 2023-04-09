@@ -156,7 +156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d9c651c2eb2ae4b82a28cc4511cc64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletSpeed: 3
-  _bulletIncreaseCoefficient: 0.1
+  _bulletSpeed: 6
+  _bulletIncreaseCoefficient: 0.2
   _bulletSize: {x: 0.2, y: 0.2, z: 0.2}
   _bulletMaxSize: {x: 1.5, y: 1.5, z: 1.5}
+  _isMove: 0
