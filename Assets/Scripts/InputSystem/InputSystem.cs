@@ -8,6 +8,6 @@ public class InputSystem : MonoBehaviour
 
     protected void TouchDetected(bool isTouch)
     {
-        OnTouchDetection.Invoke(isTouch);
+        OnTouchDetection?.Invoke(isTouch);
     }
 }

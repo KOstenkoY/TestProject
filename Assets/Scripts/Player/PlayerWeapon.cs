@@ -13,7 +13,6 @@ public class PlayerWeapon : MonoBehaviour
 
     private List<GameObject> _bulletsList = new List<GameObject>();
 
-
     private void Awake()
     {
         InitializePool();

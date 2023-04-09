@@ -14,32 +14,28 @@ public class Bullet : MonoBehaviour
 
     [SerializeField] private Vector3 _bulletMaxSize = new Vector3(1.5f, 1.5f, 1.5f);
 
-    private bool _isMove = false;
+    public bool _isMove = false;
 
     private Rigidbody _rigidbody = null;
 
     private Coroutine _bulletIncreaseCoroutine;
 
-    //private const string _enemyTag = "Enemy";
+    private Color _color = Color.white;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+
+        _color = gameObject.GetComponentInChildren<Renderer>().material.color;
     }
 
     private void OnEnable()
     {
+        _rigidbody.velocity = Vector3.zero;
+
         transform.localScale = _bulletSize;
 
         _bulletIncreaseCoroutine = StartCoroutine(IncreaseBullet());
-    }
-
-    private void FixedUpdate()
-    {
-        if (_isMove)
-        {
-            _rigidbody.velocity = Vector3.forward * _bulletSpeed;
-        }
     }
 
     public void Shoot(Vector3 bulletMaxSize)
@@ -48,7 +44,7 @@ public class Bullet : MonoBehaviour
 
         StopCoroutine(_bulletIncreaseCoroutine);
 
-        _isMove = true;
+        _rigidbody.velocity = Vector3.forward * _bulletSpeed;
     }
 
     private IEnumerator IncreaseBullet()
@@ -64,11 +60,24 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<Enemy>(out Enemy enemyComponent))
+        Collider[] colliders = Physics.OverlapSphere(transform.position, transform.localScale.x * 2);
+
+        foreach(var collider in colliders)
         {
-            enemyComponent.KillEnemy();
+            if (collider.TryGetComponent<Enemy>(out Enemy enemyComponent))
+            {
+                enemyComponent.KillEnemy(_color);
+            }
         }
 
         gameObject.SetActive(false);
     }
+
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.blue;
+    //    Gizmos.DrawSphere(transform.position, 0.5f);
+    //    Gizmos.color = Color.green;
+    //    Gizmos.DrawLine(transform.position, transform.position + transform.forward * 1.5f);
+    //}
 }
