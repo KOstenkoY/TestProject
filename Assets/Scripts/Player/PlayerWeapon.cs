@@ -9,6 +9,8 @@ public class PlayerWeapon : MonoBehaviour
 
     [SerializeField] private int _amountToPool = 1;
 
+    [SerializeField] private float _maxDistanceToEnemy = 3;
+
     private GameObject _currentBullet = null;
 
     private List<GameObject> _bulletsList = new List<GameObject>();
@@ -69,6 +71,30 @@ public class PlayerWeapon : MonoBehaviour
             {
                 throw new System.Exception("Bullet hasn't Bullet script. Check bullet prefab.");
             }
+
+            CheckObstacle();
+        }
+    }
+
+    private void CheckObstacle()
+    {
+        Ray ray = new Ray(transform.position, transform.forward);
+
+        RaycastHit hit;
+
+        if (Physics.SphereCast(ray, transform.position.x / 3, out hit))
+        {
+            if(hit.transform.TryGetComponent<Enemy>(out Enemy enemyComponent))
+            {
+                if(hit.distance > _maxDistanceToEnemy)
+                {
+
+                }
+            }
+        }
+        else
+        {
+            //move
         }
     }
 
