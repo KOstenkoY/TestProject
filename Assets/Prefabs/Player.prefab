@@ -110,6 +110,9 @@ MonoBehaviour:
   _playerReducingCoefficient: 0.2
   _jumpPower: 0.5
   _maxDistanceToEnemy: 3
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &4136073611611106237
 GameObject:
   m_ObjectHideFlags: 0

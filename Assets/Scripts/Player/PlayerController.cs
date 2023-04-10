@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
 
     private Coroutine _playerReduceCoroutine;
 
+    public GameObject _hitGameObject;
+
     private void Awake()
     {
         _player = GetComponent<Player>();
@@ -78,17 +80,15 @@ public class PlayerController : MonoBehaviour
 
         RaycastHit hit;
         
-        if (Physics.SphereCast(ray, transform.position.x / 2, out hit))
+        if (Physics.SphereCast(ray, transform.position.x, out hit)) 
         {
-            if (hit.transform.TryGetComponent<Enemy>(out Enemy enemyComponent))
+            _hitGameObject = hit.transform.gameObject;
+
+            if (_hitGameObject.TryGetComponent<Enemy>(out Enemy enemyComponent))
             {
                 if (hit.distance > _maxDistanceToEnemy)
                 {
                     Move(hit.distance - _maxDistanceToEnemy);
-                }
-                else
-                {
-                    Move(0);
                 }
             }
             else
